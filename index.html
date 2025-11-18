@@ -21,7 +21,11 @@
     p.lead{color:var(--muted);margin:0 0 18px}
 
     .cta{display:flex;gap:12px;align-items:center}
-    .btn{background:linear-gradient(90deg,var(--accent),#7c3aed);color:white;padding:12px 18px;border-radius:12px;border:0;font-weight:600;cursor:pointer;box-shadow:0 6px 18px rgba(59,130,246,0.12)}
+    .btn{background:linear-gradient(90deg,var(--accent),#7c3aed);color:white;padding:12px 18px;border-radius:12px;border:0;font-weight:600;cursor:pointer;box-shadow:0 6px 18px rgba(59,130,246,0.12);transition: all 0.3s ease;}
+    .btn#joinTop:hover{
+      box-shadow: 0 0 15px 3px rgba(59, 130, 246, 0.7), 0 0 25px 5px rgba(124, 58, 237, 0.5);
+      transform: translateY(-2px);
+    }
     .ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:12px;color:var(--muted);}
 
     /* redirection window between heading and testimonials */
@@ -117,7 +121,6 @@
       <div class="card">
         <h3>Example Market Trends</h3>
         <div class="chart-wrap">
-          <!-- lightweight svg chart -->
           <svg viewBox="0 0 300 120" width="100%" height="100%" preserveAspectRatio="none">
             <defs>
               <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
@@ -210,29 +213,6 @@
             </div>
           </div>
         </div>
-            <div class="testimonial">
-              <div class="name">Asha S.</div>
-              <div class="role">Founder, Content Lab</div>
-              <div class="quote">"The weekly trends helped our team zero in on winning content formats — our engagement rose 38% in two weeks."</div>
-            </div>
-          </div>
-          <div class="slide card">
-            <div class="avatar">RY</div>
-            <div class="testimonial">
-              <div class="name">Ryan O'Connor</div>
-              <div class="role">Growth Lead</div>
-              <div class="quote">"Sharp insights and clear playbooks. I use their templates for every launch."</div>
-            </div>
-          </div>
-          <div class="slide card">
-            <div class="avatar">EM</div>
-            <div class="testimonial">
-              <div class="name">Ema M.</div>
-              <div class="role">Product Designer</div>
-              <div class="quote">"Practical, short and to the point. Saved me hours of research."</div>
-            </div>
-          </div>
-        </div>
       </div>
       <div class="dots" id="dots"></div>
     </section>
@@ -266,10 +246,9 @@
   </div>
 
   <script>
-    // Telegram link placeholder — replace with your channel link (t.me/yourchannel or https://t.me/+...)
     const TELEGRAM_LINK = 'https://t.me/forexgoldcryptotrade';
 
-    // Auto-join countdown logic
+    // Auto-join countdown
     (function(){
       const countEl = document.getElementById('count');
       const joinNow = document.getElementById('joinNow');
@@ -280,9 +259,7 @@
       let cancelled = false;
       const redirectEl = document.getElementById('redirect');
 
-      function openTelegram(){
-        window.open(TELEGRAM_LINK, '_blank');
-      }
+      function openTelegram(){ window.open(TELEGRAM_LINK, '_blank'); }
       joinNow.addEventListener('click', openTelegram);
       joinTop.addEventListener('click', openTelegram);
       joinBottom.addEventListener('click', openTelegram);
@@ -295,7 +272,7 @@
       },1000);
     })();
 
-    // Carousel logic with swipe
+    // Carousel with swipe
     (function(){
       const slides = document.getElementById('slides');
       const slideCount = slides.children.length;
@@ -313,19 +290,16 @@
       function updateDots(){ Array.from(dotsWrap.children).forEach((n,idx)=> n.className = 'dot' + (idx===index? ' active':'') ); }
 
       buildDots();
-      // auto-rotate every 3 seconds
       setInterval(()=>{ go(index+1); },3000);
       document.getElementById('prev').addEventListener('click', ()=>go(index-1));
       document.getElementById('next').addEventListener('click', ()=>go(index+1));
 
-      // swipe support
       let startX=null, dx=0;
       const carousel = document.getElementById('carousel');
       carousel.addEventListener('touchstart', e=>{ startX = e.touches[0].clientX; dx=0; });
       carousel.addEventListener('touchmove', e=>{ if(startX===null) return; dx = e.touches[0].clientX - startX; slides.style.transform = `translateX(calc(-${index*100}% + ${dx}px))`; });
       carousel.addEventListener('touchend', ()=>{ if(Math.abs(dx) > 40){ if(dx<0) index++; else index--; } go(index); startX=null; dx=0; });
 
-      // keyboard arrows
       window.addEventListener('keydown', (e)=>{ if(e.key==='ArrowLeft') go(index-1); if(e.key==='ArrowRight') go(index+1); });
     })();
 
