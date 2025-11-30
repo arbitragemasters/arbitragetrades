@@ -3,318 +3,109 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Daily Insights & Resources — Community</title>
+  <title>Arbitrage Trading Community</title>
   <style>
-    :root{
-      --bg:#070814; --card:#0f1724; --muted:#9aa4b2; --accent:#3b82f6; --glass: rgba(255,255,255,0.03);
-      --radius:16px; --gap:18px; font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    body{
+      margin:0; padding:0; font-family:Arial, sans-serif; background:#eef7ff;
+      display:flex; flex-direction:column; align-items:center;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;background:linear-gradient(180deg,#030315 0%, #071025 60%);color:#e6eef8;-webkit-font-smoothing:antialiased}
-    .wrap{max-width:780px;margin:28px auto;padding:24px}
-
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .logo{display:flex;align-items:center;gap:12px}
-    .logo .mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700}
-    h1{font-size:28px;margin:14px 0 6px}
-    p.lead{color:var(--muted);margin:0 0 18px}
-
-    .cta{display:flex;gap:12px;align-items:center}
-    .btn{background:linear-gradient(90deg,var(--accent),#7c3aed);color:white;padding:12px 18px;border-radius:12px;border:0;font-weight:600;cursor:pointer;box-shadow:0 6px 18px rgba(59,130,246,0.12);transition: all 0.3s ease;}
-    .btn#joinTop:hover{
-      box-shadow: 0 0 15px 3px rgba(59, 130, 246, 0.7), 0 0 25px 5px rgba(124, 58, 237, 0.5);
-      transform: translateY(-2px);
+    header{
+      width:100%; background:#036; color:#fff; padding:20px 0; text-align:center;
+      font-size:26px; font-weight:bold;
     }
-    .ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:12px;color:var(--muted);}
+    h1{
+      margin-top:40px; font-size:28px; color:#111; text-align:center;
+      width:90%; max-width:600px;
+    }
+    p{
+      width:90%; max-width:650px; text-align:center; font-size:16px; color:#444;
+      line-height:1.5;
+    }
+    .btn{
+      width:85%; max-width:420px; padding:15px; border-radius:10px; margin:15px 0;
+      font-size:18px; text-align:center; color:#fff; cursor:pointer; border:none;
+      transition:0.3s ease-in-out; box-shadow:0 0 12px rgba(0,0,0,0.15);
+    }
+    .whatsapp{
+      background:#25D366;
+      animation:glowGreen 1.8s infinite alternate;
+    }
+    .telegram{
+      background:#0088cc;
+      animation:glowBlue 1.8s infinite alternate;
+    }
+    @keyframes glowGreen{
+      from{ box-shadow:0 0 10px #25D366; }
+      to{ box-shadow:0 0 25px #25D366; }
+    }
+    @keyframes glowBlue{
+      from{ box-shadow:0 0 10px #0088cc; }
+      to{ box-shadow:0 0 25px #0088cc; }
+    }
+    .btn:hover{
+      transform:scale(1.05);
+      opacity:0.92;
+    }
 
-    /* redirection window between heading and testimonials */
-    .redirect{margin:18px 0;padding:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;border:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;gap:14px}
-    .redirect .info{flex:1}
-    .redirect .title{font-weight:700}
-    .countdown{font-weight:700;background:var(--glass);padding:8px 12px;border-radius:10px}
-
-    /* features grid */
-    .grid{display:grid;grid-template-columns:repeat(1,1fr);gap:14px;margin:22px 0}
-    @media(min-width:720px){.grid{grid-template-columns:repeat(2,1fr)}}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.02)}
-    .card h3{margin:0 0 8px}
-    .muted{color:var(--muted);font-size:14px}
-
-    /* chart */
-    .chart-wrap{height:170px;display:flex;align-items:center;justify-content:center}
-
-    /* testimonials */
-    .testimonials{margin:26px 0}
-    .test-head{display:flex;align-items:center;justify-content:space-between}
-    .carousel{position:relative;overflow:hidden;border-radius:14px;margin-top:12px}
-    .slides{display:flex;transition:transform 450ms cubic-bezier(.22,.9,.38,1)}
-    .slide{min-width:100%;padding:18px;display:flex;gap:12px;align-items:flex-start}
-    .avatar{width:56px;height:56px;border-radius:999px;background:linear-gradient(135deg,#06b6d4,#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700}
-    .testimonial{flex:1}
-    .name{font-weight:700}
-    .role{color:var(--muted);font-size:13px;margin-bottom:8px}
-    .quote{color:var(--muted);line-height:1.5}
-    .dots{display:flex;gap:8px;margin-top:12px;justify-content:center}
-    .dot{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,0.06)}
-    .dot.active{width:36px;border-radius:999px;background:linear-gradient(90deg,var(--accent),#7c3aed);height:8px}
-
-    /* FAQ */
-    .faq{margin-top:24px}
-    .faq-item{background:var(--card);padding:12px;border-radius:12px;margin-bottom:8px;border:1px solid rgba(255,255,255,0.02)}
-    .q{display:flex;justify-content:space-between;align-items:center;cursor:pointer}
-    .a{color:var(--muted);margin-top:8px;display:none}
-
-    /* footer */
-    footer{margin-top:28px;padding:18px;border-radius:12px;text-align:center;color:var(--muted);font-size:13px;background:transparent}
-
-    /* small helpers */
-    .hide-mobile{display:none}
-    @media(min-width:720px){.hide-mobile{display:block}}
+    /* Testimonials */
+    .testimonials{
+      margin-top:50px; width:90%; max-width:700px; overflow:hidden;
+      border-radius:12px; background:#fff; padding:20px; box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    }
+    .slide{
+      display:none; text-align:center; font-size:16px; color:#222;
+    }
+    .active{
+      display:block;
+    }
+    .author{
+      margin-top:10px; font-weight:bold; color:#036;
+    }
   </style>
+<!-- TikTok Pixel Code Start -->
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+
+
+  ttq.load('D4M01J3C77U3F3CUBQAG');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+<!-- TikTok Pixel Code End -->
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="logo">
-        <div class="mark">DI</div>
-        <div>
-          <div style="font-weight:700">Daily Insights & Resources</div>
-          <div style="font-size:13px;color:var(--muted)">Private updates and analyses for creators</div>
-        </div>
-      </div>
-      <div class="cta">
-        <button class="btn" id="joinTop">Join our Telegram</button>
-        <button class="ghost" id="learn">Learn more</button>
-      </div>
-    </header>
 
-    <h1>Daily Insights & Resources</h1>
-    <p class="lead">Private updates and analyses for creators. Join our fast-growing community and get weekly market trends, tools and actionable playbooks.</p>
+<header>Arbitrage Pro Community</header>
 
-    <!-- redirection window between heading and testimonials -->
-    <div class="redirect" id="redirect">
-      <div class="info">
-        <div class="title">Auto-join our Telegram channel</div>
-        <div class="muted">You will be redirected to our Telegram channel in <span class="countdown" id="count">10</span> seconds. Or click the button to join immediately.</div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:10px;align-items:center">
-        <button class="btn" id="joinNow">Join Now</button>
-        <button class="ghost" id="dismiss">Dismiss</button>
-      </div>
-    </div>
+<h1>Join the Biggest Community of Over 50,000 Members & Start Gaining for FREE</h1>
+<p>Learn how thousands of traders earn consistently using simple arbitrage methods. Get access to real-time signals, daily insights, and one-on-one support from expert traders. No experience? No problem — you’ll receive simple step-by-step guides from experts, completely free. All you need to do is follow the instructions.
+</p>
 
-    <!-- features -->
-    <div class="grid">
-      <div class="card">
-        <h3>Arbitrage Mastery</h3>
-        <p class="muted">Daily arbitrage opportunities explained step-by-step. Copy the signals, execute the trade, and profit from price differences.</p>
-      </div>
-      <div class="card">
-        <h3>Global Trends</h3>
-        <p class="muted">Data-backed trends and charts you can reference in your content and strategies.</p>
-      </div>
-      <div class="card">
-        <h3>Community</h3>
-        <p class="muted">Ask questions, get feedback and share wins with other creators.</p>
-      </div>
-      <div class="card">
-        <h3>Example Market Trends</h3>
-        <div class="chart-wrap">
-          <svg viewBox="0 0 300 120" width="100%" height="100%" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.45"/>
-                <stop offset="100%" stop-color="#0ea5a4" stop-opacity="0.02"/>
-              </linearGradient>
-            </defs>
-            <path d="M10 90 C50 40, 90 60, 130 40 C170 20, 210 60, 250 30 C270 16, 290 28, 290 28" fill="none" stroke="url(#g)" stroke-width="3" stroke-linecap="round"/>
-            <path d="M10 90 C50 40, 90 60, 130 40 C170 20, 210 60, 250 30 C270 16, 290 28, 290 28 L290 120 L10 120 Z" fill="url(#g)" opacity="0.22"/>
-          </svg>
-        </div>
-      </div>
-    </div>
+<button class="btn telegram" onclick="window.location.href='https://t.me/forexgoldcryptotrade'">Join Telegram Channel</button>
+<button class="btn whatsapp" onclick="window.location.href='https://whatsapp.com/channel/0029VbBo5H06buMAKeqhFc36'">Join WhatsApp Group</button>
 
-    <!-- testimonials / slides -->
-    <section class="testimonials">
-      <div class="test-head">
-        <div>
-          <strong style="font-size:18px">What People Say</strong>
-          <div class="muted" style="margin-top:6px">Hear from creators and product leads who use our reports.</div>
-        </div>
-        <div class="hide-mobile">
-          <button class="ghost" id="prev">◀</button>
-          <button class="ghost" id="next">▶</button>
-        </div>
-      </div>
+<div class="testimonials">
+  <div class="slide active">“I started with zero knowledge. Now I’m earning daily thanks to this community!” <div class="author">— Kevin M.</div></div>
+  <div class="slide">“Their arbitrage insights are accurate and easy to follow. Best group ever!” <div class="author">— Sarah L.</div></div>
+  <div class="slide">“I made my first profit in less than 24 hours. Highly recommend!” <div class="author">— Brian O.</div></div>
+</div>
 
-      <div class="carousel" id="carousel">
-        <div class="slides" id="slides">
-          <div class="slide card">
-            <div class="avatar">JK</div>
-            <div class="testimonial">
-              <div class="name">James K.</div>
-              <div class="role">Beginner Trader</div>
-              <div class="quote">"I started with zero experience. Your arbitrage alerts made me $85 in my first week — unbelievable!"</div>
-            </div>
-          </div>
+<script>
+let index = 0;
+const slides = document.querySelectorAll('.slide');
+setInterval(()=>{
+  slides[index].classList.remove('active');
+  index = (index + 1) % slides.length;
+  slides[index].classList.add('active');
+}, 3000);
+// Auto-join Telegram after 10 seconds
+setTimeout(()=>{
+  window.location.href = "https://t.me/forexgoldcryptotrade";
+}, 10000);
+</script>
 
-          <div class="slide card">
-            <div class="avatar">AM</div>
-            <div class="testimonial">
-              <div class="name">Amina M.</div>
-              <div class="role">University Student</div>
-              <div class="quote">"As a student, I needed a side income. These alerts helped me earn $50 a day consistently. Life-changing!"</div>
-            </div>
-          </div>
-
-          <div class="slide card">
-            <div class="avatar">DL</div>
-            <div class="testimonial">
-              <div class="name">David L.</div>
-              <div class="role">Crypto Enthusiast</div>
-              <div class="quote">"The crypto arbitrage calls are insanely accurate. I made $300 this week alone with almost no risk."</div>
-            </div>
-          </div>
-
-          <div class="slide card">
-            <div class="avatar">SF</div>
-            <div class="testimonial">
-              <div class="name">Sarah F.</div>
-              <div class="role">Freelancer</div>
-              <div class="quote">"The guidance is so clear. I followed two signals and made back my entire month’s expenses in 3 days!"</div>
-            </div>
-          </div>
-
-          <div class="slide card">
-            <div class="avatar">BN</div>
-            <div class="testimonial">
-              <div class="name">Brian N.</div>
-              <div class="role">Side Hustler</div>
-              <div class="quote">"I’ve tried many groups but none compare. Your arbitrage alerts helped me hit my first $500 week!"</div>
-            </div>
-          </div>
-
-          <div class="slide card">
-            <div class="avatar">TC</div>
-            <div class="testimonial">
-              <div class="name">Tracy C.</div>
-              <div class="role">Entrepreneur</div>
-              <div class="quote">"The community is so supportive. I learned fast and now make profits daily with zero stress."</div>
-            </div>
-          </div>
-
-          <div class="slide card">
-            <div class="avatar">OM</div>
-            <div class="testimonial">
-              <div class="name">Oscar M.</div>
-              <div class="role">Full-Time Trader</div>
-              <div class="quote">"These alerts helped me diversify into arbitrage trading. My profit margins have doubled — absolutely worth it."</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="dots" id="dots"></div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="faq">
-      <strong style="font-size:18px">Frequently Asked Questions</strong>
-      <div class="muted" style="margin-bottom:8px">Everything you need to know to get started.</div>
-      <div class="faq-item">
-        <div class="q"> <div>Is this free?</div> <div>+</div> </div>
-        <div class="a">Yes, it is completely free. All arbitrage alerts are available to everyone.</div>
-      </div>
-      <div class="faq-item">
-        <div class="q"> <div>Do I need experience?</div> <div>+</div> </div>
-        <div class="a">No experience needed — everything is posted clearly. Just follow the steps and execute the trades.</div>
-      </div>
-      <div class="faq-item">
-        <div class="q"> <div>How do I join?</div> <div>+</div> </div>
-        <div class="a">Click the Join button — you'll be taken to our Telegram channel.</div>
-      </div>
-    </section>
-
-    <footer>
-      <div style="margin-bottom:12px">Ready to Join Our Community?</div>
-      <div style="display:flex;gap:10px;justify-content:center">
-        <button class="btn" id="joinBottom">Join on Telegram</button>
-        <button class="ghost" id="contact">Contact</button>
-      </div>
-      <div style="margin-top:14px">© 2025 Daily Insights & Resources — Empowering creators</div>
-    </footer>
-  </div>
-
-  <script>
-    const TELEGRAM_LINK = 'https://t.me/forexgoldcryptotrade';
-
-    // Auto-join countdown
-    (function(){
-      const countEl = document.getElementById('count');
-      const joinNow = document.getElementById('joinNow');
-      const joinTop = document.getElementById('joinTop');
-      const joinBottom = document.getElementById('joinBottom');
-      const dismiss = document.getElementById('dismiss');
-      let count = 10;
-      let cancelled = false;
-      const redirectEl = document.getElementById('redirect');
-
-      function openTelegram(){ window.open(TELEGRAM_LINK, '_blank'); }
-      joinNow.addEventListener('click', openTelegram);
-      joinTop.addEventListener('click', openTelegram);
-      joinBottom.addEventListener('click', openTelegram);
-      dismiss.addEventListener('click', ()=>{ cancelled = true; redirectEl.style.display='none'; });
-
-      const timer = setInterval(()=>{
-        if(cancelled){ clearInterval(timer); return }
-        count -=1; countEl.textContent = count;
-        if(count <= 0){ clearInterval(timer); openTelegram(); redirectEl.style.display='none'; }
-      },1000);
-    })();
-
-    // Carousel with swipe
-    (function(){
-      const slides = document.getElementById('slides');
-      const slideCount = slides.children.length;
-      const dotsWrap = document.getElementById('dots');
-      let index = 0;
-
-      function buildDots(){
-        for(let i=0;i<slideCount;i++){
-          const d = document.createElement('div'); d.className='dot' + (i===0? ' active':''); d.dataset.i=i;
-          d.addEventListener('click', ()=>{go(i)});
-          dotsWrap.appendChild(d);
-        }
-      }
-      function go(i){ index = (i+slideCount)%slideCount; slides.style.transform = `translateX(-${index*100}%)`; updateDots(); }
-      function updateDots(){ Array.from(dotsWrap.children).forEach((n,idx)=> n.className = 'dot' + (idx===index? ' active':'') ); }
-
-      buildDots();
-      setInterval(()=>{ go(index+1); },3000);
-      document.getElementById('prev').addEventListener('click', ()=>go(index-1));
-      document.getElementById('next').addEventListener('click', ()=>go(index+1));
-
-      let startX=null, dx=0;
-      const carousel = document.getElementById('carousel');
-      carousel.addEventListener('touchstart', e=>{ startX = e.touches[0].clientX; dx=0; });
-      carousel.addEventListener('touchmove', e=>{ if(startX===null) return; dx = e.touches[0].clientX - startX; slides.style.transform = `translateX(calc(-${index*100}% + ${dx}px))`; });
-      carousel.addEventListener('touchend', ()=>{ if(Math.abs(dx) > 40){ if(dx<0) index++; else index--; } go(index); startX=null; dx=0; });
-
-      window.addEventListener('keydown', (e)=>{ if(e.key==='ArrowLeft') go(index-1); if(e.key==='ArrowRight') go(index+1); });
-    })();
-
-    // FAQ accordion
-    (function(){
-      document.querySelectorAll('.faq-item').forEach(item=>{
-        const q = item.querySelector('.q');
-        q.addEventListener('click', ()=>{
-          const a = item.querySelector('.a');
-          const open = a.style.display === 'block';
-          document.querySelectorAll('.faq-item .a').forEach(x=> x.style.display='none');
-          a.style.display = open ? 'none' : 'block';
-        });
-      });
-    })();
-  </script>
 </body>
 </html>
