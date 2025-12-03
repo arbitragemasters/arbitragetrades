@@ -21,11 +21,18 @@
       width:90%; max-width:650px; text-align:center; font-size:16px; color:#444;
       line-height:1.5;
     }
+
     .btn{
       width:85%; max-width:420px; padding:15px; border-radius:10px; margin:15px 0;
       font-size:18px; text-align:center; color:#fff; cursor:pointer; border:none;
       transition:0.3s ease-in-out; box-shadow:0 0 12px rgba(0,0,0,0.15);
+      display:flex; align-items:center; justify-content:center; gap:10px;
     }
+
+    .btn img{
+      width:24px; height:24px;
+    }
+
     .whatsapp{
       background:#25D366;
       animation:glowGreen 1.8s infinite alternate;
@@ -34,6 +41,11 @@
       background:#0088cc;
       animation:glowBlue 1.8s infinite alternate;
     }
+    .trade{
+      background:#ff9900;
+      animation:glowOrange 1.8s infinite alternate;
+    }
+
     @keyframes glowGreen{
       from{ box-shadow:0 0 10px #25D366; }
       to{ box-shadow:0 0 25px #25D366; }
@@ -42,6 +54,11 @@
       from{ box-shadow:0 0 10px #0088cc; }
       to{ box-shadow:0 0 25px #0088cc; }
     }
+    @keyframes glowOrange{
+      from{ box-shadow:0 0 10px #ff9900; }
+      to{ box-shadow:0 0 25px #ff9900; }
+    }
+
     .btn:hover{
       transform:scale(1.05);
       opacity:0.92;
@@ -61,7 +78,24 @@
     .author{
       margin-top:10px; font-weight:bold; color:#036;
     }
+
+    /* Redirect Notice */
+    #redirectBox{
+      display:none;
+      position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
+      background:#fff; padding:15px 20px; border-radius:10px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.2); text-align:center;
+      z-index:999;
+    }
+    #redirectBox button{
+      padding:10px 18px; border:none; border-radius:8px; cursor:pointer;
+      margin:8px; font-size:15px; font-weight:bold;
+    }
+    #continueBtn{ background:#036; color:#fff; }
+    #skipBtn{ background:#d9534f; color:#fff; }
   </style>
+
+
 <!-- TikTok Pixel Code Start -->
 <script>
 !function (w, d, t) {
@@ -69,31 +103,53 @@
 var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
 ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
 
-
   ttq.load('D4M01J3C77U3F3CUBQAG');
   ttq.page();
 }(window, document, 'ttq');
 </script>
 <!-- TikTok Pixel Code End -->
+
 </head>
 <body>
 
 <header>Arbitrage Pro Community</header>
 
 <h1>Join the Biggest Community of Over 50,000 Members & Start Gaining for FREE</h1>
-<p>Learn how thousands of traders earn consistently using simple arbitrage methods. Get access to real-time signals, daily insights, and one-on-one support from expert traders. No experience? No problem — you’ll receive simple step-by-step guides from experts, completely free. All you need to do is follow the instructions.
-</p>
+<p>Learn how thousands of traders earn consistently using simple arbitrage methods. Get access to real-time signals, daily insights, and one-on-one support from expert traders. No experience? No problem — simple step-by-step guides included.</p>
 
-<button class="btn telegram" onclick="window.location.href='https://t.me/forexgoldcryptotrade'">Join Telegram Channel</button>
-<button class="btn whatsapp" onclick="window.location.href='https://whatsapp.com/channel/0029VbBo5H06buMAKeqhFc36'">Join WhatsApp Group</button>
+<!-- Buttons with logos -->
+<button class="btn telegram" onclick="window.location.href='https://t.me/forexgoldcryptotrade'">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg">
+  Join Telegram Channel
+</button>
 
+<button class="btn whatsapp" onclick="window.location.href='https://whatsapp.com/channel/0029VbBo5H06buMAKeqhFc36'">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+  Join WhatsApp Group
+</button>
+
+<button class="btn trade" onclick="window.location.href='https://www.localcoinpool.com/user/register'">
+  <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png">
+  Create a Trading Account Here
+</button>
+
+
+<!-- Testimonials -->
 <div class="testimonials">
   <div class="slide active">“I started with zero knowledge. Now I’m earning daily thanks to this community!” <div class="author">— Kevin M.</div></div>
   <div class="slide">“Their arbitrage insights are accurate and easy to follow. Best group ever!” <div class="author">— Sarah L.</div></div>
   <div class="slide">“I made my first profit in less than 24 hours. Highly recommend!” <div class="author">— Brian O.</div></div>
 </div>
 
+<!-- Redirect Notice -->
+<div id="redirectBox">
+  <p>You will be redirected shortly...</p>
+  <button id="continueBtn">Continue</button>
+  <button id="skipBtn">Skip</button>
+</div>
+
 <script>
+/* Testimonial slider */
 let index = 0;
 const slides = document.querySelectorAll('.slide');
 setInterval(()=>{
@@ -101,10 +157,33 @@ setInterval(()=>{
   index = (index + 1) % slides.length;
   slides[index].classList.add('active');
 }, 3000);
-// Auto-join Telegram after 10 seconds
-setTimeout(()=>{
-  window.location.href = "https://t.me/forexgoldcryptotrade";
+
+
+/* Auto redirect with skip/continue option */
+let autoRedirect = true;
+
+setTimeout(() => {
+  document.getElementById("redirectBox").style.display = "block";
+
+  // After 3 seconds → redirect if no interaction
+  setTimeout(() => {
+    if (autoRedirect) {
+      window.location.href = "https://t.me/forexgoldcryptotrade";
+    }
+  }, 3000);
+
 }, 10000);
+
+// Continue = cancel redirect
+document.getElementById("continueBtn").onclick = function(){
+  autoRedirect = false;
+  document.getElementById("redirectBox").style.display = "none";
+};
+
+// Skip = redirect instantly
+document.getElementById("skipBtn").onclick = function(){
+  window.location.href = "https://t.me/forexgoldcryptotrade";
+};
 </script>
 
 </body>
