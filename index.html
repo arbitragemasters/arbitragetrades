@@ -24,6 +24,7 @@
       background-size: 20px 20px;
       display: flex; flex-direction: column; align-items: center;
       color: var(--text-primary);
+      overflow-x: hidden; /* Prevent horizontal scroll */
     }
 
     /* --- HEADER --- */
@@ -40,6 +41,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      box-sizing: border-box;
     }
 
     /* --- MAIN CONTENT --- */
@@ -47,6 +49,7 @@
       width: 90%; max-width: 600px;
       text-align: center;
       margin-top: 40px;
+      box-sizing: border-box;
     }
 
     h1 {
@@ -80,17 +83,20 @@
       justify-content: center;
       width: 100%;
       margin-bottom: 15px;
+      /* Ensure content doesn't overflow */
+      box-sizing: border-box; 
     }
 
     /* The Beaming Arrow */
     .beaming-arrow {
       position: absolute;
-      left: -45px;
+      left: -45px; /* Desktop position */
       width: 30px;
       height: 30px;
       fill: var(--accent-blue);
       animation: beamPulse 1.5s infinite ease-in-out;
       filter: drop-shadow(0 0 5px rgba(37, 99, 235, 0.5));
+      flex-shrink: 0; /* Prevent squishing */
     }
 
     @keyframes beamPulse {
@@ -117,6 +123,7 @@
       gap: 12px;
       position: relative;
       overflow: hidden;
+      box-sizing: border-box;
     }
 
     .btn img {
@@ -146,6 +153,7 @@
       border: 1px solid #e2e8f0;
       position: relative;
       overflow: hidden;
+      box-sizing: border-box;
     }
     
     /* Decorative top bar */
@@ -184,6 +192,7 @@
       border: 2px solid #e2e8f0;
       margin-right: 15px;
       background-color: #f1f5f9;
+      flex-shrink: 0;
     }
 
     .profile-info h4 {
@@ -198,7 +207,8 @@
     .verified-icon {
       width: 16px;
       height: 16px;
-      fill: #3b82f6; /* Blue verified tick */
+      fill: #3b82f6;
+      flex-shrink: 0;
     }
 
     .profile-info span {
@@ -220,7 +230,7 @@
     }
 
     .stars {
-      color: #fbbf24; /* Gold stars */
+      color: #fbbf24;
       font-size: 14px;
       letter-spacing: 2px;
     }
@@ -239,6 +249,8 @@
       z-index: 999;
       border: 1px solid #e2e8f0;
       min-width: 300px;
+      max-width: 90%; /* Ensure it fits on small screens */
+      box-sizing: border-box;
     }
     #redirectBox p { margin: 0 0 15px 0; font-weight: 600; color: #333; }
     #redirectBox button {
@@ -254,9 +266,41 @@
     #continueBtn { background: #0f172a; color: #fff; }
     #skipBtn { background: #ef4444; color: #fff; }
 
+    /* --- MOBILE OPTIMIZATION --- */
     @media (max-width: 480px) {
-      .beaming-arrow { left: -35px; width: 24px; height: 24px; }
-      .testimonials { padding: 20px; }
+      h1 { font-size: 24px; }
+      
+      .testimonials { padding: 20px; width: 95%; }
+      
+      .btn-wrapper {
+        /* Add padding to left to make room for the arrow inside the screen bounds */
+        padding-left: 10px; 
+        justify-content: flex-start; /* Align button to right of arrow */
+      }
+
+      .beaming-arrow {
+        left: -20px; /* Reduced offset so it doesn't go off screen */
+        width: 20px;  /* Smaller icon */
+        height: 20px;
+      }
+
+      .btn {
+        /* Ensure button doesn't stretch too wide causing overflow with the arrow */
+        width: calc(100% - 10px); 
+        font-size: 15px;
+        padding: 14px;
+      }
+
+      #redirectBox {
+        min-width: auto;
+        width: 85%;
+        bottom: 20px;
+      }
+      
+      #redirectBox button {
+        padding: 8px 15px;
+        font-size: 13px;
+      }
     }
   </style>
 
@@ -317,12 +361,10 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     <!-- Slide 1 -->
     <div class="slide active">
       <div class="profile-container">
-        <!-- Profile Image -->
         <img src="https://ui-avatars.com/api/?name=Kevin+M&background=0D8ABC&color=fff" alt="Kevin" class="profile-pic">
         <div class="profile-info">
           <h4>
             Kevin M.
-            <!-- Verified Checkmark SVG -->
             <svg class="verified-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
           </h4>
           <span>Verified Trader</span>
@@ -414,7 +456,7 @@ document.getElementById("continueBtn").onclick = function(){
 
 // Skip = redirect instantly
 document.getElementById("skipBtn").onclick = function(){
-  window.location.href = "https://t.me/arbitragetrades  ";
+  window.location.href = "https://t.me/forexgoldcryptotrade  ";
 };
 </script>
 
