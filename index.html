@@ -83,7 +83,6 @@
       justify-content: center;
       width: 100%;
       margin-bottom: 15px;
-      /* Ensure content doesn't overflow */
       box-sizing: border-box; 
     }
 
@@ -96,7 +95,7 @@
       fill: var(--accent-blue);
       animation: beamPulse 1.5s infinite ease-in-out;
       filter: drop-shadow(0 0 5px rgba(37, 99, 235, 0.5));
-      flex-shrink: 0; /* Prevent squishing */
+      flex-shrink: 0;
     }
 
     @keyframes beamPulse {
@@ -249,7 +248,7 @@
       z-index: 999;
       border: 1px solid #e2e8f0;
       min-width: 300px;
-      max-width: 90%; /* Ensure it fits on small screens */
+      max-width: 90%;
       box-sizing: border-box;
     }
     #redirectBox p { margin: 0 0 15px 0; font-weight: 600; color: #333; }
@@ -273,19 +272,17 @@
       .testimonials { padding: 20px; width: 95%; }
       
       .btn-wrapper {
-        /* Add padding to left to make room for the arrow inside the screen bounds */
         padding-left: 10px; 
-        justify-content: flex-start; /* Align button to right of arrow */
+        justify-content: flex-start;
       }
 
       .beaming-arrow {
-        left: -20px; /* Reduced offset so it doesn't go off screen */
-        width: 20px;  /* Smaller icon */
+        left: -20px;
+        width: 20px;
         height: 20px;
       }
 
       .btn {
-        /* Ensure button doesn't stretch too wide causing overflow with the arrow */
         width: calc(100% - 10px); 
         font-size: 15px;
         padding: 14px;
@@ -448,18 +445,17 @@ setTimeout(() => {
 
 }, 10000);
 
-// Continue = cancel redirect
+// UPDATED LOGIC: Continue = Redirect instantly
 document.getElementById("continueBtn").onclick = function(){
-  autoRedirect = false;
-  document.getElementById("redirectBox").style.display = "none";
+  window.location.href = "https://t.me/arbitragetrades  ";
 };
 
-// Skip = redirect instantly
+// UPDATED LOGIC: Skip = Cancel redirect (stay on page)
 document.getElementById("skipBtn").onclick = function(){
-  window.location.href = "https://t.me/arbitragetrades  ";
+  autoRedirect = false;
+  document.getElementById("redirectBox").style.display = "none";
 };
 </script>
 
 </body>
 </html>
-
