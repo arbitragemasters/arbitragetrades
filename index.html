@@ -5,102 +5,266 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Arbitrage Trading Community</title>
   <style>
-    body{
-      margin:0; padding:0; font-family:Arial, sans-serif; background:#eef7ff;
-      display:flex; flex-direction:column; align-items:center;
-    }
-    header{
-      width:100%; background:#036; color:#fff; padding:20px 0; text-align:center;
-      font-size:26px; font-weight:bold;
-    }
-    h1{
-      margin-top:40px; font-size:28px; color:#111; text-align:center;
-      width:90%; max-width:600px;
-    }
-    p{
-      width:90%; max-width:650px; text-align:center; font-size:16px; color:#444;
-      line-height:1.5;
+    /* --- FINTECH THEME RESET --- */
+    :root {
+      --bg-color: #f4f7f6;
+      --card-bg: #ffffff;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --accent-blue: #2563eb;
+      --header-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      --shadow-soft: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     }
 
-    .btn{
-      width:85%; max-width:420px; padding:15px; border-radius:10px; margin:15px 0;
-      font-size:18px; text-align:center; color:#fff; cursor:pointer; border:none;
-      transition:0.3s ease-in-out; box-shadow:0 0 12px rgba(0,0,0,0.15);
-      display:flex; align-items:center; justify-content:center; gap:10px;
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+      background-size: 20px 20px;
+      display: flex; flex-direction: column; align-items: center;
+      color: var(--text-primary);
     }
 
-    .btn img{
-      width:24px; height:24px;
+    /* --- HEADER --- */
+    header {
+      width: 100%;
+      background: var(--header-bg);
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    .whatsapp{
-      background:#25D366;
-      animation:glowGreen 1.8s infinite alternate;
-    }
-    .telegram{
-      background:#0088cc;
-      animation:glowBlue 1.8s infinite alternate;
-    }
-    .trade{
-      background:#ff9900;
-      animation:glowOrange 1.8s infinite alternate;
+    /* --- MAIN CONTENT --- */
+    .container {
+      width: 90%; max-width: 600px;
+      text-align: center;
+      margin-top: 40px;
     }
 
-    @keyframes glowGreen{
-      from{ box-shadow:0 0 10px #25D366; }
-      to{ box-shadow:0 0 25px #25D366; }
-    }
-    @keyframes glowBlue{
-      from{ box-shadow:0 0 10px #0088cc; }
-      to{ box-shadow:0 0 25px #0088cc; }
-    }
-    @keyframes glowOrange{
-      from{ box-shadow:0 0 10px #ff9900; }
-      to{ box-shadow:0 0 25px #ff9900; }
+    h1 {
+      font-size: 28px;
+      color: #0f172a;
+      margin-bottom: 15px;
+      line-height: 1.3;
     }
 
-    .btn:hover{
-      transform:scale(1.05);
-      opacity:0.92;
+    p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 30px;
     }
 
-    /* Testimonials */
-    .testimonials{
-      margin-top:50px; width:90%; max-width:700px; overflow:hidden;
-      border-radius:12px; background:#fff; padding:20px; box-shadow:0 4px 15px rgba(0,0,0,0.1);
-    }
-    .slide{
-      display:none; text-align:center; font-size:16px; color:#222;
-    }
-    .active{
-      display:block;
-    }
-    .author{
-      margin-top:10px; font-weight:bold; color:#036;
+    /* --- BUTTONS & ARROWS SECTION --- */
+    .action-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 450px;
+      margin: 0 auto;
     }
 
-    /* Redirect Notice */
-    #redirectBox{
-      display:none;
-      position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
-      background:#fff; padding:15px 20px; border-radius:10px;
-      box-shadow:0 4px 10px rgba(0,0,0,0.2); text-align:center;
-      z-index:999;
+    .btn-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 15px;
     }
-    #redirectBox button{
-      padding:10px 18px; border:none; border-radius:8px; cursor:pointer;
-      margin:8px; font-size:15px; font-weight:bold;
+
+    /* The Beaming Arrow */
+    .beaming-arrow {
+      position: absolute;
+      left: -45px;
+      width: 30px;
+      height: 30px;
+      fill: var(--accent-blue);
+      animation: beamPulse 1.5s infinite ease-in-out;
+      filter: drop-shadow(0 0 5px rgba(37, 99, 235, 0.5));
     }
-    #continueBtn{ background:#036; color:#fff; }
-    #skipBtn{ background:#d9534f; color:#fff; }
+
+    @keyframes beamPulse {
+      0% { transform: translateX(0); opacity: 0.5; }
+      50% { transform: translateX(5px); opacity: 1; }
+      100% { transform: translateX(0); opacity: 0.5; }
+    }
+
+    .btn {
+      width: 100%;
+      padding: 16px;
+      border-radius: 12px;
+      font-size: 17px;
+      font-weight: 600;
+      text-align: center;
+      color: #fff;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn img {
+      width: 26px; height: 26px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+
+    /* Button Specific Styles */
+    .whatsapp { background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); }
+    .telegram { background: linear-gradient(135deg, #0088cc 0%, #005f8f 100%); }
+    .trade { background: linear-gradient(135deg, #ff9900 0%, #cc7a00 100%); }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.15);
+      filter: brightness(1.05);
+    }
+
+    /* --- PROFESSIONAL TESTIMONIALS --- */
+    .testimonials {
+      margin-top: 50px;
+      width: 90%; max-width: 600px;
+      border-radius: 20px;
+      background: #fff;
+      padding: 30px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e2e8f0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Decorative top bar */
+    .testimonials::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa);
+    }
+
+    .slide {
+      display: none; 
+      text-align: left;
+      animation: slideUp 0.5s ease-out;
+    }
+    .active { display: block; }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Profile Layout */
+    .profile-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .profile-pic {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #e2e8f0;
+      margin-right: 15px;
+      background-color: #f1f5f9;
+    }
+
+    .profile-info h4 {
+      margin: 0;
+      font-size: 16px;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .verified-icon {
+      width: 16px;
+      height: 16px;
+      fill: #3b82f6; /* Blue verified tick */
+    }
+
+    .profile-info span {
+      font-size: 13px;
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
+    .review-text {
+      font-size: 16px;
+      color: #334155;
+      line-height: 1.6;
+      background: #f8fafc;
+      padding: 15px;
+      border-radius: 12px;
+      position: relative;
+      margin-bottom: 10px;
+      border-left: 4px solid #3b82f6;
+    }
+
+    .stars {
+      color: #fbbf24; /* Gold stars */
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+
+    /* --- REDIRECT BOX --- */
+    #redirectBox {
+      display: none;
+      position: fixed;
+      bottom: 30px; left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      padding: 20px 25px;
+      border-radius: 16px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      z-index: 999;
+      border: 1px solid #e2e8f0;
+      min-width: 300px;
+    }
+    #redirectBox p { margin: 0 0 15px 0; font-weight: 600; color: #333; }
+    #redirectBox button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 0 5px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    #continueBtn { background: #0f172a; color: #fff; }
+    #skipBtn { background: #ef4444; color: #fff; }
+
+    @media (max-width: 480px) {
+      .beaming-arrow { left: -35px; width: 24px; height: 24px; }
+      .testimonials { padding: 20px; }
+    }
   </style>
-
 
 <!-- TikTok Pixel Code Start -->
 <script>
 !function (w, d, t) {
   w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js  ",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
 ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
 
   ttq.load('D4M01J3C77U3F3CUBQAG');
@@ -114,31 +278,99 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 
 <header>Arbitrage Pro Community</header>
 
-<h1>Join the Biggest Community of Over 50,000 Members & Start Gaining for FREE</h1>
-<p>Learn how thousands of traders earn consistently using simple arbitrage methods. Get access to real-time signals, daily insights, and one-on-one support from expert traders. No experience? No problem — simple step-by-step guides included.</p>
+<div class="container">
+  <h1>Join 50,000+ Members & Start Gaining for FREE</h1>
+  <p>Learn how thousands of traders earn consistently using simple arbitrage methods. Get access to real-time signals, daily insights, and expert support. No experience needed.</p>
 
-<!-- Buttons with logos -->
-<button class="btn telegram" onclick="window.location.href='https://t.me/arbitragetrades'">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg">
-  Join Telegram Channel
-</button>
+  <div class="action-area">
+    <!-- Telegram Button -->
+    <div class="btn-wrapper">
+      <svg class="beaming-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z"/></svg>
+      <button class="btn telegram" onclick="window.location.href='https://t.me/arbitragetrades  '">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg  ">
+        Join Telegram Channel
+      </button>
+    </div>
 
-<button class="btn whatsapp" onclick="window.location.href='https://whatsapp.com/channel/0029VbBo5H06buMAKeqhFc36'">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
-  Join WhatsApp Group
-</button>
+    <!-- WhatsApp Button -->
+    <div class="btn-wrapper">
+      <svg class="beaming-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z"/></svg>
+      <button class="btn whatsapp" onclick="window.location.href='https://whatsapp.com/channel/0029VbBo5H06buMAKeqhFc36  '">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg  ">
+        Join WhatsApp Group
+      </button>
+    </div>
 
-<button class="btn trade" onclick="window.location.href='https://t.me/arbitrage_mods'">
-  <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png">
-  Message me here for Guidagance
-</button>
+    <!-- Trade Button -->
+    <div class="btn-wrapper">
+      <svg class="beaming-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z"/></svg>
+      <button class="btn trade" onclick="window.location.href='https://t.me/arbitrage_mods  '">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png  ">
+        Message me here for Guidance
+      </button>
+    </div>
+  </div>
 
+  <!-- REVAMPED TESTIMONIALS -->
+  <div class="testimonials">
+    
+    <!-- Slide 1 -->
+    <div class="slide active">
+      <div class="profile-container">
+        <!-- Profile Image -->
+        <img src="https://ui-avatars.com/api/?name=Kevin+M&background=0D8ABC&color=fff" alt="Kevin" class="profile-pic">
+        <div class="profile-info">
+          <h4>
+            Kevin M.
+            <!-- Verified Checkmark SVG -->
+            <svg class="verified-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </h4>
+          <span>Verified Trader</span>
+        </div>
+      </div>
+      <div class="review-text">
+        "I started with zero knowledge. Now I'm earning daily thanks to this community!"
+      </div>
+      <div class="stars">★★★★★</div>
+    </div>
 
-<!-- Testimonials -->
-<div class="testimonials">
-  <div class="slide active">“I started with zero knowledge. Now I’m earning daily thanks to this community!” <div class="author">— Kevin M.</div></div>
-  <div class="slide">“Their arbitrage insights are accurate and easy to follow. Best group ever!” <div class="author">— Sarah L.</div></div>
-  <div class="slide">“I made my first profit in less than 24 hours. Highly recommend!” <div class="author">— Brian O.</div></div>
+    <!-- Slide 2 -->
+    <div class="slide">
+      <div class="profile-container">
+        <img src="https://ui-avatars.com/api/?name=Sarah+L&background=25D366&color=fff" alt="Sarah" class="profile-pic">
+        <div class="profile-info">
+          <h4>
+            Sarah L.
+            <svg class="verified-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </h4>
+          <span>Active Member</span>
+        </div>
+      </div>
+      <div class="review-text">
+        "Their arbitrage insights are accurate and easy to follow. Best group ever!"
+      </div>
+      <div class="stars">★★★★★</div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+      <div class="profile-container">
+        <img src="https://ui-avatars.com/api/?name=Brian+O&background=ff9900&color=fff" alt="Brian" class="profile-pic">
+        <div class="profile-info">
+          <h4>
+            Brian O.
+            <svg class="verified-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </h4>
+          <span>Pro Trader</span>
+        </div>
+      </div>
+      <div class="review-text">
+        "I made my first profit in less than 24 hours. Highly recommend!"
+      </div>
+      <div class="stars">★★★★★</div>
+    </div>
+
+  </div>
 </div>
 
 <!-- Redirect Notice -->
@@ -168,7 +400,7 @@ setTimeout(() => {
   // After 3 seconds → redirect if no interaction
   setTimeout(() => {
     if (autoRedirect) {
-      window.location.href = "https://t.me/arbitragetrades";
+      window.location.href = "https://t.me/arbitragetrades  ";
     }
   }, 3000);
 
@@ -182,12 +414,9 @@ document.getElementById("continueBtn").onclick = function(){
 
 // Skip = redirect instantly
 document.getElementById("skipBtn").onclick = function(){
-  window.location.href = "https://t.me/forexgoldcryptotrade";
+  window.location.href = "https://t.me/arbitragetrades  ";
 };
 </script>
 
 </body>
 </html>
-
-
-
