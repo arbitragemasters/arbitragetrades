@@ -29,9 +29,55 @@
 
     .container {
       width: 90%;
-      max-width: 500px;
+      max-width: 520px;
       text-align: center;
       box-sizing: border-box;
+      padding: 30px 0;
+    }
+
+    /* Logo Area */
+    .hero-section {
+      margin-bottom: 35px;
+    }
+
+    .logo-circle {
+      width: 95px;
+      height: 95px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 15px 25px rgba(37, 99, 235, 0.25);
+      border: 4px solid #ffffff;
+    }
+
+    .logo-circle span {
+      font-size: 38px;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .hero-title {
+      font-size: 30px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-text {
+      font-size: 17px;
+      line-height: 1.6;
+      color: #475569;
+      max-width: 420px;
+      margin: 0 auto;
+      font-weight: 500;
+    }
+
+    .hero-text strong {
+      color: #0f172a;
     }
 
     .action-area {
@@ -39,7 +85,7 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-width: 450px;
+      max-width: 470px;
       margin: 0 auto;
     }
 
@@ -49,15 +95,15 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      margin-bottom: 20px;
+      margin-bottom: 28px;
       box-sizing: border-box;
     }
 
     .beaming-arrow {
       position: absolute;
-      left: -45px;
-      width: 30px;
-      height: 30px;
+      left: -48px;
+      width: 34px;
+      height: 34px;
       fill: var(--accent-blue);
       animation: beamPulse 1.5s infinite ease-in-out;
       filter: drop-shadow(0 0 5px rgba(37, 99, 235, 0.5));
@@ -72,10 +118,10 @@
 
     .btn {
       width: 100%;
-      padding: 18px;
-      border-radius: 14px;
-      font-size: 17px;
-      font-weight: 600;
+      padding: 24px;
+      border-radius: 18px;
+      font-size: 20px;
+      font-weight: 700;
       text-align: center;
       color: #fff;
       cursor: pointer;
@@ -85,15 +131,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 14px;
       position: relative;
       overflow: hidden;
       box-sizing: border-box;
     }
 
     .btn img {
-      width: 26px;
-      height: 26px;
+      width: 30px;
+      height: 30px;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
     }
 
@@ -101,17 +147,13 @@
       background: linear-gradient(135deg, #0088cc 0%, #005f8f 100%);
     }
 
-    .trade {
-      background: linear-gradient(135deg, #ff9900 0%, #cc7a00 100%);
-    }
-
     .whatsapp {
       background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
     }
 
     .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.15);
+      transform: translateY(-3px);
+      box-shadow: 0 18px 30px -5px rgba(0, 0, 0, 0.18);
       filter: brightness(1.05);
     }
 
@@ -163,21 +205,39 @@
 
     @media (max-width: 480px) {
 
+      .container {
+        padding: 20px 0;
+      }
+
+      .hero-title {
+        font-size: 24px;
+      }
+
+      .hero-text {
+        font-size: 15px;
+        padding: 0 10px;
+      }
+
       .btn-wrapper {
         padding-left: 10px;
         justify-content: flex-start;
       }
 
       .beaming-arrow {
-        left: -20px;
-        width: 20px;
-        height: 20px;
+        left: -18px;
+        width: 22px;
+        height: 22px;
       }
 
       .btn {
         width: calc(100% - 10px);
-        font-size: 15px;
-        padding: 16px;
+        font-size: 17px;
+        padding: 20px;
+      }
+
+      .btn img {
+        width: 26px;
+        height: 26px;
       }
 
       #redirectBox {
@@ -263,10 +323,30 @@
 
   <div class="container">
 
+    <!-- Top Logo & Heading -->
+    <div class="hero-section">
+
+      <div class="logo-circle">
+        <span>₿</span>
+      </div>
+
+      <div class="hero-title">
+        Arbitrage Trading Community
+      </div>
+
+      <div class="hero-text">
+        Join more than <strong>50,000+ community members</strong>
+        and start gaining valuable arbitrage trading insights
+        and opportunities for free.
+      </div>
+
+    </div>
+
     <div class="action-area">
 
       <!-- Telegram Button -->
       <div class="btn-wrapper">
+
         <svg class="beaming-arrow" viewBox="0 0 24 24">
           <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z"/>
         </svg>
@@ -278,25 +358,12 @@
 
           Join Telegram Channel
         </button>
+
       </div>
 
-      <!-- Trade Button -->
+      <!-- WhatsApp Button -->
       <div class="btn-wrapper">
-        <svg class="beaming-arrow" viewBox="0 0 24 24">
-          <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z"/>
-        </svg>
 
-        <button class="btn trade"
-          onclick="window.location.href='https://t.me/arbitrage_mods'">
-
-          <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png">
-
-          Message me here for Guidance
-        </button>
-      </div>
-
-      <!-- WhatsApp Button LAST -->
-      <div class="btn-wrapper">
         <svg class="beaming-arrow" viewBox="0 0 24 24">
           <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z"/>
         </svg>
@@ -308,18 +375,22 @@
 
           Join WhatsApp Group
         </button>
+
       </div>
 
     </div>
+
   </div>
 
   <!-- Redirect Notice -->
   <div id="redirectBox">
+
     <p>You will be redirected shortly...</p>
 
     <button id="continueBtn">Continue</button>
 
     <button id="skipBtn">Skip</button>
+
   </div>
 
   <script>
