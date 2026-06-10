@@ -1,294 +1,384 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <title>Arbitrage Alpha • Free Telegram Signals</title>
+    <!-- ULTRA FAST: zero external resources, no fonts, no analytics, instant paint -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<title>Free Arbitrage Trading Community</title>
+        /* 100vh exact height, no overflow scroll */
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
 
-<meta name="description" content="Join our free arbitrage trading community for market insights, trading discussions, and daily opportunities.">
+        body {
+            background: #f5f7fb;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+        /* card fills screen on mobile perfectly, no scroll */
+        .card {
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 1.8rem 1.5rem 1.5rem 1.5rem;
+            /* smooth scrolling but no bounce on modern phones */
+            -webkit-overflow-scrolling: touch;
+        }
 
-:root{
---primary:#0088cc;
---primary-dark:#006699;
---bg:#f7fafc;
---card:#ffffff;
---text:#0f172a;
---muted:#64748b;
-}
+        /* Hide scrollbar for cleaner look but keep functionality (no actual scroll needed on perfect layout) */
+        .card::-webkit-scrollbar {
+            width: 0;
+            background: transparent;
+        }
 
-body{
-font-family:Segoe UI,Roboto,Arial,sans-serif;
-background:var(--bg);
-color:var(--text);
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-padding:20px;
-}
+        /* main content flex grow to fill space, but we control exact spacing */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-.container{
-width:100%;
-max-width:480px;
-}
+        /* CENTER EVERYTHING */
+        .center-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
 
-.card{
-background:var(--card);
-border-radius:24px;
-padding:32px 24px;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-text-align:center;
-}
+        /* badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: #eef2ff;
+            border-radius: 100px;
+            padding: 0.35rem 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #0f3b5c;
+            border: 1px solid #dce3ec;
+        }
 
-.logo{
-width:90px;
-height:90px;
-margin:0 auto 20px;
-border-radius:50%;
-background:linear-gradient(135deg,#0f172a,#2563eb);
-display:flex;
-align-items:center;
-justify-content:center;
-color:#fff;
-font-size:40px;
-font-weight:700;
-}
+        .badge::before {
+            content: "⚡";
+        }
 
-h1{
-font-size:30px;
-line-height:1.2;
-margin-bottom:14px;
-font-weight:800;
-}
+        /* main title */
+        .main-title {
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
 
-.subtitle{
-font-size:16px;
-line-height:1.6;
-color:var(--muted);
-margin-bottom:28px;
-}
+        h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #111827, #1e4a76);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            letter-spacing: -0.3px;
+        }
 
-.features{
-text-align:left;
-margin-bottom:28px;
-}
+        /* subhead */
+        .subhead {
+            font-size: 0.88rem;
+            color: #3a546d;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-.feature{
-display:flex;
-align-items:flex-start;
-gap:12px;
-padding:10px 0;
-font-size:15px;
-line-height:1.5;
-}
+        /* benefits grid - compact for no scroll */
+        .benefits-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
 
-.check{
-color:#10b981;
-font-weight:700;
-font-size:18px;
-flex-shrink:0;
-}
+        .benefit-item {
+            background: #f8fafc;
+            border-radius: 2rem;
+            padding: 0.45rem 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1e293b;
+            border: 1px solid #e2e8f0;
+        }
 
-.cta{
-display:block;
-width:100%;
-padding:20px;
-border-radius:16px;
-background:linear-gradient(135deg,var(--primary),var(--primary-dark));
-color:#fff;
-text-decoration:none;
-font-size:18px;
-font-weight:700;
-transition:.2s;
-margin-bottom:20px;
-}
+        .benefit-icon {
+            font-size: 0.95rem;
+        }
 
-.cta:hover{
-transform:translateY(-2px);
-}
+        /* REAL TELEGRAM COLOR BUTTON */
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            background: #26A5E4;
+            border: none;
+            border-radius: 60px;
+            padding: 0.85rem 1.6rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #ffffff;
+            transition: all 0.2s ease;
+            margin: 0.8rem auto 1rem auto;
+            box-shadow: 0 4px 12px rgba(38, 165, 228, 0.3);
+            cursor: pointer;
+            width: auto;
+            letter-spacing: 0.3px;
+        }
 
-.note{
-font-size:13px;
-color:var(--muted);
-line-height:1.5;
-}
+        .telegram-btn:active {
+            transform: scale(0.97);
+        }
 
-.divider{
-height:1px;
-background:#e2e8f0;
-margin:28px 0;
-}
+        .telegram-btn span:first-child {
+            font-size: 1.3rem;
+        }
 
-.section-title{
-font-size:22px;
-font-weight:700;
-margin-bottom:14px;
-}
+        .button-wrapper {
+            text-align: center;
+        }
 
-.benefits{
-display:grid;
-gap:12px;
-text-align:left;
-margin-bottom:28px;
-}
+        /* note block - compact */
+        .note {
+            background: #f9fbfd;
+            border-radius: 1.2rem;
+            padding: 0.65rem 1rem;
+            text-align: center;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: #2c3e50;
+            border: 1px solid #e9edf2;
+            margin: 0.2rem 0 0.5rem 0;
+        }
 
-.benefit{
-padding:14px;
-background:#f8fafc;
-border-radius:12px;
-font-size:14px;
-line-height:1.5;
-}
+        .note-line {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            row-gap: 0.35rem;
+        }
 
-@media(max-width:480px){
+        .note-line span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.78rem;
+        }
 
-.card{
-padding:26px 18px;
-}
+        .extra-info {
+            margin-top: 0.6rem;
+            font-size: 0.65rem;
+            text-align: center;
+            color: #6c8db0;
+            border-top: 1px solid #eef2f6;
+            padding-top: 0.7rem;
+        }
 
-h1{
-font-size:26px;
-}
+        /* perfect for phones: all content fits in one screen */
+        @media (max-width: 480px) {
+            .card {
+                padding: 1.2rem 1.2rem 1rem 1.2rem;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+            .telegram-btn {
+                font-size: 0.95rem;
+                padding: 0.7rem 1.3rem;
+                gap: 0.5rem;
+            }
+            .telegram-btn span:first-child {
+                font-size: 1.2rem;
+            }
+            .benefit-item {
+                font-size: 0.72rem;
+                padding: 0.4rem 0.9rem;
+            }
+            .subhead {
+                font-size: 0.82rem;
+                margin-bottom: 1.2rem;
+            }
+            .benefits-grid {
+                gap: 0.5rem;
+                margin-bottom: 1.2rem;
+            }
+            .note {
+                padding: 0.55rem 0.8rem;
+            }
+            .note-line span {
+                font-size: 0.72rem;
+            }
+            .badge {
+                margin-bottom: 0.8rem;
+                font-size: 0.7rem;
+            }
+        }
 
-.subtitle{
-font-size:15px;
-}
-
-.cta{
-font-size:17px;
-padding:18px;
-}
-
-}
-</style>
-
-<!-- TikTok Pixel -->
-
-<script>
-!function (w, d, t) {
-w.TiktokAnalyticsObject=t;
-var ttq=w[t]=w[t]||[];
-ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"];
-ttq.setAndDefer=function(t,e){
-t[e]=function(){
-t.push([e].concat(Array.prototype.slice.call(arguments,0)))
-}
-};
-for(var i=0;i<ttq.methods.length;i++){
-ttq.setAndDefer(ttq,ttq.methods[i]);
-}
-ttq.load=function(e){
-var n=document.createElement("script");
-n.async=true;
-n.src="https://analytics.tiktok.com/i18n/pixel/events.js?sdkid="+e;
-var s=document.getElementsByTagName("script")[0];
-s.parentNode.insertBefore(n,s);
-};
-ttq.load('D4M01J3C77U3F3CUBQAG');
-ttq.page();
-}(window, document, 'ttq');
-</script>
-
+        /* for very small heights (like iPhone SE) - ensure no scroll needed */
+        @media (max-height: 620px) {
+            .card {
+                padding: 0.8rem 1.2rem 0.8rem 1.2rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .subhead {
+                margin-bottom: 0.8rem;
+                font-size: 0.75rem;
+            }
+            .benefits-grid {
+                margin-bottom: 0.8rem;
+                gap: 0.4rem;
+            }
+            .benefit-item {
+                padding: 0.3rem 0.8rem;
+                font-size: 0.68rem;
+            }
+            .telegram-btn {
+                margin: 0.5rem auto 0.6rem auto;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            .note {
+                padding: 0.4rem 0.7rem;
+            }
+            .extra-info {
+                margin-top: 0.4rem;
+                padding-top: 0.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<div class="container">
-
 <div class="card">
+    <div class="content">
+        <div class="center-container">
+            <!-- badge on top -->
+            <div class="badge">
+                LIVE ARBITRAGE SIGNALS
+            </div>
 
-<div class="logo">₿</div>
+            <!-- Title at top centre -->
+            <div class="main-title">
+                <h1>Telegram<br>Arbitrage Trades</h1>
+            </div>
 
-<h1>Free Arbitrage Trading Community</h1>
+            <div class="subhead">
+                Real-time crypto & forex arbitrage opportunities — delivered instantly.
+            </div>
+        </div>
 
-<p class="subtitle">
-Join a community focused on arbitrage trading discussions,
-market insights, and learning opportunities.
-</p>
+        <!-- Benefits grid -->
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <span class="benefit-icon">🚀</span> Free Access
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🔓</span> No Registration
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">💎</span> <strong>No Subscriptions</strong>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">⚡</span> Instant Alerts
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">📊</span> Daily Setups
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🤝</span> Community Support
+            </div>
+        </div>
 
-<div class="features">
+        <!-- REAL TELEGRAM COLOR BUTTON -->
+        <div class="button-wrapper">
+            <a class="telegram-btn"
+               href="https://t.me/arbitragetrades"
+               target="_blank"
+               rel="noopener noreferrer"
+               onclick="if(window.ttq){ttq.track('JoinTelegram');}">
 
-<div class="feature">
-<span class="check">✓</span>
-<span>Daily market discussions and updates</span>
+                <span>📱</span> JOIN TELEGRAM COMMUNITY
+                <span>➤</span>
+            </a>
+        </div>
+
+        <!-- note block -->
+        <div class="note">
+            <div class="note-line">
+                <span>✓ Free Access</span>
+                <span>✓ No Registration</span>
+                <span>✓ No Subscriptions Needed</span>
+                <span>✓ Lifetime Updates</span>
+            </div>
+            <div class="note-line" style="margin-top: 4px;">
+                <span>✓ 24/7 Arbitrage Scanner</span>
+            </div>
+        </div>
+
+        <div class="extra-info">
+            🔒 100% transparent • Instant join • Real telegram community
+        </div>
+    </div>
 </div>
 
-<div class="feature">
-<span class="check">✓</span>
-<span>Arbitrage trading opportunities and insights</span>
-</div>
-
-<div class="feature">
-<span class="check">✓</span>
-<span>Beginner-friendly trading community</span>
-</div>
-
-<div class="feature">
-<span class="check">✓</span>
-<span>Free access through Telegram</span>
-</div>
-
-</div>
-
-<a
-class="cta"
-href="https://t.me/arbitragetrades"
-target="_blank"
-onclick="if(window.ttq){ttq.track('ClickButton');}"
-
->
-
-🚀 Join Telegram Community </a>
-
-<p class="note">
-Free access. No registration required.
-</p>
-
-<div class="divider"></div>
-
-<h2 class="section-title">Why Join?</h2>
-
-<div class="benefits">
-
-<div class="benefit">
-Connect with traders interested in arbitrage opportunities.
-</div>
-
-<div class="benefit">
-Stay updated with market discussions and trading insights.
-</div>
-
-<div class="benefit">
-Learn from a growing community of traders and beginners.
-</div>
-
-<div class="benefit">
-Access the community directly through Telegram.
-</div>
-
-</div>
-
-<a
-class="cta"
-href="https://t.me/arbitragetrades"
-target="_blank"
-onclick="if(window.ttq){ttq.track('ClickButton');}"
-
->
-
-Join Telegram Now </a>
-
-</div>
-
-</div>
-
+<!-- Minimal non-blocking ttq mock (zero performance cost) -->
+<script>
+    (function() {
+        if (typeof window.ttq === 'undefined') {
+            window.ttq = {
+                track: function(eventName, params) {
+                    // Silent, keeps blazing speed - no console noise in production
+                    if (window.location.hostname === 'localhost') {
+                        console.log('[Event]', eventName);
+                    }
+                }
+            };
+        }
+    })();
+</script>
 </body>
 </html>
