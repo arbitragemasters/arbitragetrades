@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
-  <title>Alpha Trades – Arbitrage & Forex</title>
-
+  <title>Amiin Trades – Arbitrage & Forex</title>
   <meta name="description" content="Join our free Arbitrage & Forex Trading Telegram Community.">
-
   <style>
     /* ===== RESET & BASE ===== */
     * {
@@ -18,8 +14,7 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
 
-    html,
-    body {
+    html, body {
       height: 100%;
       overflow: hidden;
       background: #050816;
@@ -34,37 +29,61 @@
         radial-gradient(ellipse at 50% 0%, #1a3a5c 0%, #0b1a2e 45%, #03040b 100%);
     }
 
-    /* ===== CONTAINER ===== */
-    .container {
-      width: min(94vw, 430px);
-      height: min(94vh, 780px);
+    /* ===== SCROLLABLE WRAPPER ===== */
+    .scroll-wrapper {
+      width: 100%;
+      height: 100vh;
+      overflow-y: auto;
       display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      align-items: center;
-      padding: 20px 20px 16px;
-      border-radius: 40px;
-      background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(24px) saturate(1.1);
-      -webkit-backdrop-filter: blur(24px) saturate(1.1);
-      box-shadow:
-        0 20px 60px rgba(0, 160, 255, 0.10),
-        0 0 0 1px rgba(255, 255, 255, 0.04),
-        inset 0 1px 0 rgba(255, 255, 255, 0.03);
-      transition: all 0.2s ease;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 16px 0;
+      scroll-behavior: smooth;
     }
 
-    /* ===== PROFILE – perfectly circular ===== */
+    .scroll-wrapper::-webkit-scrollbar {
+      width: 3px;
+    }
+    .scroll-wrapper::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.02);
+    }
+    .scroll-wrapper::-webkit-scrollbar-thumb {
+      background: rgba(0,212,255,0.25);
+      border-radius: 12px;
+    }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      width: min(94vw, 420px);
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 18px 18px 24px;
+      border-radius: 36px;
+      background: rgba(255, 255, 255, 0.035);
+      backdrop-filter: blur(20px) saturate(1.1);
+      -webkit-backdrop-filter: blur(20px) saturate(1.1);
+      box-shadow:
+        0 16px 48px rgba(0, 160, 255, 0.08),
+        0 0 0 1px rgba(255, 255, 255, 0.035),
+        inset 0 1px 0 rgba(255, 255, 255, 0.02);
+      margin: 16px 0;
+      gap: 10px;
+    }
+
+    /* ===== PROFILE ===== */
     .profile {
-      width: 124px;
-      height: 124px;
+      width: 110px;
+      height: 110px;
       flex-shrink: 0;
       border-radius: 50%;
       overflow: hidden;
-      border: 3px solid rgba(0, 212, 255, 0.7);
+      border: 2.5px solid rgba(0, 212, 255, 0.6);
       box-shadow:
-        0 0 40px rgba(0, 212, 255, 0.25),
-        0 8px 32px rgba(0, 0, 0, 0.5);
+        0 0 30px rgba(0, 212, 255, 0.15),
+        0 6px 24px rgba(0, 0, 0, 0.4);
       background: #0a1628;
       display: flex;
       align-items: center;
@@ -76,21 +95,19 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      image-rendering: auto;
     }
 
-    /* ===== HEADING WRAPPER ===== */
+    /* ===== HEADING ===== */
     .heading-wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
-      margin: 0;
     }
 
     h1 {
-      font-size: 30px;
+      font-size: 28px;
       font-weight: 700;
       text-align: center;
       letter-spacing: -0.3px;
@@ -98,9 +115,8 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: 0 2px 20px rgba(0, 180, 255, 0.15);
+      text-shadow: 0 2px 16px rgba(0, 180, 255, 0.1);
       line-height: 1.1;
-      margin: 0;
     }
 
     /* ===== VERIFIED BADGE ===== */
@@ -108,79 +124,75 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      background: rgba(0, 212, 255, 0.12);
-      border: 1px solid rgba(0, 212, 255, 0.20);
-      padding: 2px 12px 2px 8px;
+      background: rgba(0, 212, 255, 0.10);
+      border: 1px solid rgba(0, 212, 255, 0.15);
+      padding: 2px 10px 2px 6px;
       border-radius: 40px;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 600;
       color: #7ad0ff;
       letter-spacing: 0.2px;
       white-space: nowrap;
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
-      box-shadow: 0 2px 12px rgba(0, 180, 255, 0.06);
-      margin-top: 2px;
+      box-shadow: 0 2px 8px rgba(0, 180, 255, 0.04);
     }
 
     .verified-badge svg {
-      width: 14px;
-      height: 14px;
+      width: 13px;
+      height: 13px;
       fill: #00d4ff;
     }
 
     /* ===== SUBTITLE ===== */
     .subtitle {
       text-align: center;
-      color: #b8cae0;
-      font-size: 14.5px;
-      line-height: 1.6;
-      max-width: 300px;
+      color: #b0c4db;
+      font-size: 13.5px;
+      line-height: 1.5;
+      max-width: 280px;
       font-weight: 400;
-      letter-spacing: 0.2px;
+      letter-spacing: 0.1px;
       opacity: 0.9;
-      margin: -2px 0 0;
     }
 
     /* ===== SIGNALS TAGLINE ===== */
     .signals-tagline {
       text-align: center;
       color: #7ad0ff;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
       letter-spacing: 0.2px;
-      background: rgba(0, 212, 255, 0.07);
-      padding: 8px 20px;
+      background: rgba(0, 212, 255, 0.05);
+      padding: 6px 18px;
       border-radius: 60px;
-      border: 1px solid rgba(0, 212, 255, 0.12);
+      border: 1px solid rgba(0, 212, 255, 0.08);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
-      box-shadow: 0 4px 16px rgba(0, 180, 255, 0.04);
-      margin: -2px 0 0;
+      box-shadow: 0 2px 12px rgba(0, 180, 255, 0.02);
       white-space: nowrap;
     }
 
-    /* ===== TRUST BADGES ROW ===== */
+    /* ===== TRUST BADGES ===== */
     .trust-row {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 18px;
+      gap: 14px;
       width: 100%;
       flex-shrink: 0;
-      margin: -2px 0 0;
     }
 
     .trust-item {
       display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      color: #b8cae0;
-      background: rgba(255, 255, 255, 0.04);
-      padding: 4px 14px 4px 12px;
+      gap: 5px;
+      font-size: 12px;
+      color: #b0c4db;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 3px 12px 3px 10px;
       border-radius: 40px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
       white-space: nowrap;
@@ -188,160 +200,224 @@
 
     .trust-item .star {
       color: #ffd93d;
-      font-size: 14px;
+      font-size: 12px;
       letter-spacing: -1px;
     }
+    .trust-item .rating { font-weight: 600; color: #fff; }
+    .trust-item .count { font-weight: 600; color: #7ad0ff; }
+    .trust-item .members-icon { font-size: 13px; }
 
-    .trust-item .rating {
-      font-weight: 600;
-      color: #ffffff;
-    }
-
-    .trust-item .count {
-      font-weight: 600;
-      color: #7ad0ff;
-    }
-
-    .trust-item .members-icon {
-      font-size: 14px;
-    }
-
-    /* ===== STATS CARDS ===== */
+    /* ===== STATS ===== */
     .stats {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       width: 100%;
       flex-shrink: 0;
     }
 
     .card {
       flex: 1;
-      background: rgba(255, 255, 255, 0.04);
-      padding: 14px 10px;
-      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.035);
+      padding: 12px 8px;
+      border-radius: 20px;
       text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.04);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-      transition: 0.2s;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
     }
 
     .card h2 {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 700;
       color: #00d4ff;
       letter-spacing: -0.5px;
-      text-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
+      text-shadow: 0 0 20px rgba(0, 212, 255, 0.10);
       line-height: 1.1;
     }
 
     .card span {
-      font-size: 12.5px;
-      color: #b0c6e0;
+      font-size: 11.5px;
+      color: #a8bcd6;
       font-weight: 400;
-      letter-spacing: 0.2px;
+      letter-spacing: 0.1px;
       opacity: 0.85;
     }
 
-    /* ===== FEATURES GRID ===== */
+    /* ===== FEATURES ===== */
     .features {
       width: 100%;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      gap: 8px;
       flex-shrink: 0;
     }
 
     .feature {
-      background: rgba(255, 255, 255, 0.035);
-      padding: 13px 6px;
-      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 11px 5px;
+      border-radius: 16px;
       text-align: center;
-      font-size: 13.5px;
+      font-size: 12.5px;
       font-weight: 500;
-      color: #d6e4f5;
-      border: 1px solid rgba(255, 255, 255, 0.04);
+      color: #d0dff0;
+      border: 1px solid rgba(255, 255, 255, 0.035);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
-      transition: 0.2s;
-      letter-spacing: 0.1px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+      transition: 0.15s;
+      letter-spacing: 0.05px;
       line-height: 1.3;
     }
 
     .feature:hover {
-      background: rgba(255, 255, 255, 0.07);
-      border-color: rgba(0, 212, 255, 0.10);
+      background: rgba(255, 255, 255, 0.055);
+      border-color: rgba(0, 212, 255, 0.08);
     }
 
     /* ===== EXTRA CARD ===== */
     .extra-card {
       width: 100%;
-      background: rgba(255, 255, 255, 0.035);
-      padding: 14px 16px;
-      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 12px 14px;
+      border-radius: 20px;
       text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.04);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
       flex-shrink: 0;
     }
 
     .extra-card h3 {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
       color: #7ae0b0;
       letter-spacing: -0.2px;
-      margin-bottom: 2px;
-      text-shadow: 0 0 30px rgba(0, 255, 162, 0.08);
+      margin-bottom: 1px;
+      text-shadow: 0 0 20px rgba(0, 255, 162, 0.04);
     }
 
     .extra-card p {
-      font-size: 14px;
-      color: #b8cae0;
+      font-size: 13px;
+      color: #b0c4db;
       opacity: 0.85;
       font-weight: 400;
+    }
+
+    /* ===== PROGRESS SECTION ===== */
+    .progress-section {
+      width: 100%;
+      margin: 2px 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .progress-heading {
+      font-size: 18px;
+      font-weight: 700;
+      color: #f0faff;
+      letter-spacing: -0.2px;
+      text-align: center;
+      background: linear-gradient(135deg, #e0f0ff, #b0d4ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 8px rgba(0, 180, 255, 0.06);
+    }
+
+    .progress-image-wrapper {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      background: #0a1628;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .progress-image-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      max-height: 280px;
+      background: #0a1628;
     }
 
     /* ===== CTA BUTTON ===== */
     .join-wrapper {
       width: 100%;
       flex-shrink: 0;
-      margin: 0;
     }
 
     .join {
       width: 100%;
       text-decoration: none;
-      background: linear-gradient(105deg, #00d4ff 0%, #00f5a0 100%);
-      color: #05111d;
-      padding: 18px 20px;
-      border-radius: 26px;
-      font-size: 22px;
+      background: #0088cc;
+      background: linear-gradient(145deg, #0088cc, #006699);
+      color: #ffffff;
+      padding: 16px 18px;
+      border-radius: 24px;
+      font-size: 20px;
       font-weight: 700;
       text-align: center;
-      transition: all 0.2s ease;
+      transition: all 0.15s ease;
       box-shadow:
-        0 8px 32px rgba(0, 255, 180, 0.25),
-        0 0 0 1px rgba(255, 255, 255, 0.05);
-      letter-spacing: 0.3px;
-      flex-shrink: 0;
+        0 6px 24px rgba(0, 136, 204, 0.30),
+        0 0 0 1px rgba(255, 255, 255, 0.04);
+      letter-spacing: 0.2px;
       border: none;
       cursor: pointer;
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
 
     .join:hover {
       transform: translateY(-2px) scale(1.01);
       box-shadow:
-        0 12px 40px rgba(0, 255, 180, 0.35),
-        0 0 0 1px rgba(255, 255, 255, 0.08);
+        0 10px 32px rgba(0, 136, 204, 0.40),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
+      background: linear-gradient(145deg, #0099dd, #0077bb);
     }
 
     .join:active {
-      transform: scale(0.98);
+      transform: scale(0.97);
+    }
+
+    .join-icon-left {
+      font-size: 22px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .join-icon-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+    }
+
+    .join-icon-right svg {
+      width: 28px;
+      height: 28px;
+      fill: #ffffff;
+      display: block;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+    }
+
+    .join-text {
+      flex: 1;
+      text-align: center;
+      white-space: nowrap;
     }
 
     /* ===== FOOTER ===== */
@@ -354,261 +430,184 @@
     }
 
     .footer {
-      font-size: 12px;
-      color: #7a8fa8;
+      font-size: 11px;
+      color: #6a7f98;
       letter-spacing: 0.4px;
       font-weight: 400;
       opacity: 0.7;
     }
 
     .compliance-note {
-      font-size: 10px;
-      color: rgba(255, 255, 255, 0.20);
+      font-size: 9px;
+      color: rgba(255, 255, 255, 0.16);
       text-align: center;
-      margin-top: 4px;
-      letter-spacing: 0.3px;
-      max-width: 280px;
+      margin-top: 3px;
+      letter-spacing: 0.2px;
+      max-width: 260px;
       font-weight: 300;
     }
 
-    /* ===== RESPONSIVE TWEAKS ===== */
+    /* ===== RESPONSIVE ===== */
     @media(max-height: 740px) {
-      .container {
-        height: min(96vh, 700px);
-        padding: 14px 16px 12px;
-        border-radius: 32px;
-      }
-      .profile {
-        width: 100px;
-        height: 100px;
-      }
-      h1 {
-        font-size: 26px;
-      }
-      .subtitle {
-        font-size: 13px;
-        max-width: 270px;
-      }
-      .signals-tagline {
-        font-size: 13px;
-        padding: 6px 16px;
-        white-space: nowrap;
-      }
-      .trust-item {
-        font-size: 11.5px;
-        padding: 3px 10px 3px 8px;
-      }
-      .trust-item .star {
-        font-size: 12px;
-      }
-      .card h2 {
-        font-size: 22px;
-      }
-      .card span {
-        font-size: 11.5px;
-      }
-      .feature {
-        font-size: 12.5px;
-        padding: 11px 5px;
-      }
-      .extra-card h3 {
-        font-size: 16px;
-      }
-      .extra-card p {
-        font-size: 13px;
-      }
-      .join {
-        font-size: 19px;
-        padding: 15px 18px;
-      }
-      .verified-badge {
-        font-size: 10px;
-        padding: 1px 10px 1px 6px;
-      }
-      .verified-badge svg {
-        width: 12px;
-        height: 12px;
-      }
+      .container { padding: 14px 14px 18px; border-radius: 30px; gap: 8px; }
+      .profile { width: 90px; height: 90px; }
+      h1 { font-size: 24px; }
+      .subtitle { font-size: 12.5px; max-width: 250px; }
+      .signals-tagline { font-size: 13px; padding: 5px 14px; white-space: nowrap; }
+      .trust-item { font-size: 11px; padding: 2px 10px 2px 8px; }
+      .trust-item .star { font-size: 11px; }
+      .card h2 { font-size: 20px; }
+      .card span { font-size: 10.5px; }
+      .feature { font-size: 11.5px; padding: 9px 4px; }
+      .extra-card h3 { font-size: 15px; }
+      .extra-card p { font-size: 12px; }
+      .join { font-size: 18px; padding: 14px 16px; gap: 8px; }
+      .join-icon-left { font-size: 19px; }
+      .join-icon-right { width: 24px; height: 24px; }
+      .join-icon-right svg { width: 24px; height: 24px; }
+      .verified-badge { font-size: 9px; padding: 1px 8px 1px 5px; }
+      .verified-badge svg { width: 11px; height: 11px; }
+      .progress-heading { font-size: 16px; }
+      .progress-image-wrapper img { max-height: 220px; }
     }
 
     @media(max-height: 640px) {
-      .container {
-        height: min(98vh, 600px);
-        padding: 10px 14px 10px;
-        border-radius: 28px;
-      }
-      .profile {
-        width: 80px;
-        height: 80px;
-        border-width: 2.5px;
-      }
-      h1 {
-        font-size: 22px;
-      }
-      .subtitle {
-        font-size: 12px;
-        max-width: 240px;
-      }
-      .signals-tagline {
-        font-size: 12px;
-        padding: 5px 14px;
-        white-space: nowrap;
-      }
-      .trust-row {
-        gap: 10px;
-      }
-      .trust-item {
-        font-size: 10.5px;
-        padding: 2px 8px 2px 6px;
-      }
-      .trust-item .star {
-        font-size: 11px;
-      }
-      .card {
-        padding: 10px 6px;
-      }
-      .card h2 {
-        font-size: 20px;
-      }
-      .card span {
-        font-size: 10.5px;
-      }
-      .feature {
-        font-size: 11.5px;
-        padding: 9px 4px;
-        border-radius: 14px;
-      }
-      .extra-card {
-        padding: 10px 12px;
-      }
-      .extra-card h3 {
-        font-size: 14px;
-      }
-      .extra-card p {
-        font-size: 12px;
-      }
-      .join {
-        font-size: 17px;
-        padding: 13px 16px;
-        border-radius: 22px;
-      }
-      .verified-badge {
-        font-size: 9px;
-        padding: 1px 8px 1px 5px;
-      }
-      .verified-badge svg {
-        width: 11px;
-        height: 11px;
-      }
+      .container { padding: 10px 12px 14px; border-radius: 24px; gap: 6px; }
+      .profile { width: 72px; height: 72px; border-width: 2px; }
+      h1 { font-size: 20px; }
+      .subtitle { font-size: 11px; max-width: 220px; }
+      .signals-tagline { font-size: 11.5px; padding: 4px 12px; white-space: nowrap; }
+      .trust-row { gap: 8px; }
+      .trust-item { font-size: 9.5px; padding: 2px 8px 2px 6px; }
+      .trust-item .star { font-size: 10px; }
+      .card { padding: 8px 5px; }
+      .card h2 { font-size: 18px; }
+      .card span { font-size: 9.5px; }
+      .feature { font-size: 10.5px; padding: 7px 3px; border-radius: 12px; }
+      .extra-card { padding: 8px 10px; }
+      .extra-card h3 { font-size: 13px; }
+      .extra-card p { font-size: 11px; }
+      .join { font-size: 15px; padding: 11px 14px; border-radius: 20px; gap: 6px; }
+      .join-icon-left { font-size: 16px; }
+      .join-icon-right { width: 20px; height: 20px; }
+      .join-icon-right svg { width: 20px; height: 20px; }
+      .verified-badge { font-size: 8px; padding: 1px 6px 1px 4px; }
+      .verified-badge svg { width: 10px; height: 10px; }
+      .progress-heading { font-size: 14px; }
+      .progress-image-wrapper img { max-height: 160px; }
+      .footer { font-size: 10px; }
+      .compliance-note { font-size: 8px; max-width: 200px; }
     }
 
     @media(max-width: 380px) {
-      .container {
-        padding: 14px 12px 10px;
-      }
-      .feature {
-        font-size: 11.5px;
-        padding: 10px 4px;
-      }
-      .signals-tagline {
-        font-size: 12px;
-        padding: 5px 12px;
-        white-space: normal;
-      }
-      .trust-row {
-        gap: 8px;
-        flex-wrap: wrap;
-      }
-      .trust-item {
-        font-size: 10px;
-        padding: 2px 8px 2px 6px;
-      }
+      .container { padding: 12px 10px 14px; }
+      .feature { font-size: 10.5px; padding: 8px 3px; }
+      .signals-tagline { font-size: 11px; padding: 4px 10px; white-space: normal; }
+      .trust-row { gap: 6px; flex-wrap: wrap; }
+      .trust-item { font-size: 9px; padding: 2px 6px 2px 5px; }
+      .join { font-size: 14px; padding: 10px 12px; gap: 5px; }
+      .join-icon-left { font-size: 14px; }
+      .join-icon-right { width: 18px; height: 18px; }
+      .join-icon-right svg { width: 18px; height: 18px; }
+      .join-text { white-space: normal; }
     }
   </style>
-
 </head>
-
 <body>
+  <div class="scroll-wrapper">
+    <div class="container">
 
-  <div class="container">
-
-    <!-- ===== PROFILE – perfectly circular ===== -->
-    <div class="profile">
-      <img src="https://raw.githubusercontent.com/arbitragemasters/arbitragetrades/main/photo_2026-06-27_00-58-55.jpg" alt="Alpha Trades community profile" loading="eager">
-    </div>
-
-    <!-- ===== HEADING + VERIFIED BADGE ===== -->
-    <div class="heading-wrapper">
-      <h1>Alpha Trades</h1>
-      <span class="verified-badge">
-        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-        Verified
-      </span>
-    </div>
-
-    <!-- ===== SUBTITLE ===== -->
-    <div class="subtitle">
-      Premium trading discussions, market updates, signals and educational content for serious traders.
-    </div>
-
-    <!-- ===== TRUST BADGES ROW ===== -->
-    <div class="trust-row">
-      <div class="trust-item">
-        <span class="star">★★★★★</span>
-        <span class="rating">4.9/5</span>
+      <!-- ===== PROFILE ===== -->
+      <div class="profile">
+        <img src="https://raw.githubusercontent.com/arbitragemasters/arbitragetrades/main/photo_2026-06-27_00-58-55.jpg" alt="Amiin Trades" loading="eager" width="110" height="110">
       </div>
-      <div class="trust-item">
-        <span class="members-icon">👥</span>
-        <span class="count">13,200+</span>
-        <span style="color:#8ea3b8;">members</span>
+
+      <!-- ===== HEADING ===== -->
+      <div class="heading-wrapper">
+        <h1>Amiin Trades</h1>
+        <span class="verified-badge">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          Verified
+        </span>
       </div>
-    </div>
 
-    <!-- ===== SIGNALS TAGLINE ===== -->
-    <div class="signals-tagline">
-      📊 Get free Forex &amp; Arbitrage signals daily
-    </div>
-
-    <!-- ===== CTA BUTTON ===== -->
-    <div class="join-wrapper">
-      <a class="join" href="https://telegram.me/forexgoldtrade6" target="_blank" rel="noopener">
-        👉 Tap here to start now
-      </a>
-    </div>
-
-    <!-- ===== STATS ===== -->
-    <div class="stats">
-      <div class="card">
-        <h2>24/7</h2>
-        <span>Market Analysis</span>
+      <!-- ===== SUBTITLE ===== -->
+      <div class="subtitle">
+        Premium trading discussions, market updates, signals and educational content for serious traders.
       </div>
-      <div class="card">
-        <h2>FREE</h2>
-        <span>Community Access</span>
+
+      <!-- ===== TRUST BADGES ===== -->
+      <div class="trust-row">
+        <div class="trust-item">
+          <span class="star">★★★★★</span>
+          <span class="rating">4.9/5</span>
+        </div>
+        <div class="trust-item">
+          <span class="members-icon">👥</span>
+          <span class="count">13,200+</span>
+          <span style="color:#8ea3b8;">members</span>
+        </div>
       </div>
-    </div>
 
-    <!-- ===== FEATURES ===== -->
-    <div class="features">
-      <div class="feature">♾️ Free Lifetime Access</div>
-      <div class="feature">📶 Free Daily Signals</div>
-      <div class="feature">💬 Free Chat Community Daily</div>
-      <div class="feature">📈 50% – 100% Daily</div>
-    </div>
+      <!-- ===== SIGNALS TAGLINE ===== -->
+      <div class="signals-tagline">
+        📊 Get free Forex &amp; Arbitrage signals daily
+      </div>
 
-    <!-- ===== EXTRA CARD ===== -->
-    <div class="extra-card">
-      <h3>📲 Start earning from your phone today</h3>
-      <p>✅ People are earning daily</p>
-    </div>
+      <!-- ===== CTA BUTTON ===== -->
+      <div class="join-wrapper">
+        <a class="join" href="https://telegram.me/forexgoldtrade6" target="_blank" rel="noopener">
+          <span class="join-icon-left">👉</span>
+          <span class="join-text">Tap here to start now</span>
+          <span class="join-icon-right">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+            </svg>
+          </span>
+        </a>
+      </div>
 
-    <!-- ===== FOOTER ===== -->
-    <div class="footer-wrap">
-      <div class="footer">Fast • Secure</div>
-      <div class="compliance-note">Past performance does not guarantee future results. Trading involves risk.</div>
-    </div>
+      <!-- ===== STATS ===== -->
+      <div class="stats">
+        <div class="card">
+          <h2>24/7</h2>
+          <span>Market Analysis</span>
+        </div>
+        <div class="card">
+          <h2>FREE</h2>
+          <span>Community Access</span>
+        </div>
+      </div>
 
+      <!-- ===== FEATURES ===== -->
+      <div class="features">
+        <div class="feature">♾️ Free Lifetime Access</div>
+        <div class="feature">📶 Free Daily Signals</div>
+        <div class="feature">💬 Free Chat Community</div>
+        <div class="feature">📈 50% – 100% Daily</div>
+      </div>
+
+      <!-- ===== EXTRA CARD ===== -->
+      <div class="extra-card">
+        <h3>📲 Start earning from your phone today</h3>
+        <p>✅ People are earning daily</p>
+      </div>
+
+      <!-- ===== PROGRESS SECTION ===== -->
+      <div class="progress-section">
+        <div class="progress-heading">📈 My Progress So Far</div>
+        <div class="progress-image-wrapper">
+          <img src="https://raw.githubusercontent.com/arbitragemasters/arbitragetrades/main/photo_2026-07-21_16-25-35.jpg" alt="Portfolio summary" loading="lazy" width="400" height="225">
+        </div>
+      </div>
+
+      <!-- ===== FOOTER ===== -->
+      <div class="footer-wrap">
+        <div class="footer">Fast • Secure</div>
+        <div class="compliance-note">Past performance does not guarantee future results. Trading involves risk.</div>
+      </div>
+
+    </div>
   </div>
-
 </body>
 </html>
