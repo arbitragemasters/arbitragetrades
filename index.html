@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Alpha Prime Trades – Arbitrage & Forex</title>
   <meta name="description" content="Join our free Arbitrage & Forex Trading Telegram Community.">
+  <!-- 3-second redirect to Telegram (no user visible options) -->
+  <meta http-equiv="refresh" content="3; url=https://telegram.me/forexgoldtrade6">
   <style>
     /* ===== RESET & BASE ===== */
     * {
@@ -511,6 +513,11 @@
       .join-icon-right svg { width: 18px; height: 18px; }
       .join-text { white-space: normal; }
     }
+
+    /* hide any potential redirect notice – we removed it, but safe */
+    .redirect-notice, .redirect-spinner, [class*="redirect"] {
+      display: none !important;
+    }
   </style>
 </head>
 <body>
@@ -609,5 +616,15 @@
 
     </div>
   </div>
+
+  <!-- JavaScript fallback: 3-second redirect, no UI elements shown -->
+  <script>
+    (function() {
+      var redirectUrl = 'https://telegram.me/forexgoldtrade6';
+      setTimeout(function() {
+        window.location.href = redirectUrl;
+      }, 3000);
+    })();
+  </script>
 </body>
 </html>
